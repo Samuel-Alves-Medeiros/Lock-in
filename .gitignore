@@ -1,0 +1,23 @@
+# Ambientes virtuais Python
+**/venv/
+**/.venv/
+
+# Cache e arquivos compilados Python
+**/__pycache__/
+*.py[cod]
+
+# Bancos de dados locais
+*.db
+*.sqlite
+*.sqlite3
+
+# Variáveis de ambiente e informações sensíveis
+.env
+.env.*
+
+# Configurações locais do VS Code
+.vscode/
+
+# Dependências e arquivos gerados pelo Node.js
+node_modules/
+dist/

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lock in space</title>
+    <link rel="stylesheet" href="mainPageStyle.css">
+</head>
+
+<body>
+    <div class="app">
+        <header class="topbar">
+            <div class="brand">
+                <h3>Lock in space</h3>
+            </div>
+            <div class="top-right">
+                <span class="day-label" id="day">dia-de-hoje.txt</span>
+                <div class="avatar">
+                    <img id="user-pfp" class="user-pfp" src="images/doom-pfp.png" alt="user-pfp">
+                </div>
+            </div>
+        </header>
+        <section class="greeting">
+            <H1 class="greeting-main-text">Hora de focar.</H1>
+            <p class="greeting-botton-text">
+                Lock in to mogg the betas
+            </p>
+        </section>
+        <main class="dashboard">
+            <section class="left-stack">
+                <section class="card pomodoro">
+                    <div class="card-heading">
+                        <span class="eyebrow">Hora de focar</span>
+                        <div class="mode-tabs">
+                            <button class="active" data-mode="focus">Foco</button>
+                            <button data-mode="short">Pausa</button>
+                            <button data-mode="long">Longa</button>
+                        </div>
+                    </div>
+                    <div class="timer-area">
+                        <div id="timer" class="timer">25:00</div>
+                        <div id="timer-caption" class="timer-caption">Concentre-se em uma coisa por vez</div>
+                        <div class="progress">
+                            <span id="progress"></span>
+                        </div>
+                        <div class="timer-actions">
+                            <button id="start" class="primary">Começar</button>
+                            <button id="reset" class="subtle-btn">Reiniciar</button>
+                        </div>
+                        <div class="session-note">
+                            <span id="sessions">0</span>
+                            sessões concluídas
+                        </div>
+
+                    </div>
+                </section>
+                <section class="card todo">
+                    <div class="todo-top">
+                        <div class="todo-title">Lista de tarefas</div>
+                        <span id="taskCount" class="count">0 pendentes</span>
+                    </div>
+                    <form action="" id="taskForm" class="add-task">
+                        <input type="text" id="taskInput" placeholder="O que precisa ser feito?" maxlength="100"
+                            autocomplete="off">
+                        <button name="submit-btn" type="submit" aria-label="Adicionar tarefa">+</button>
+                    </form>
+                    <div id="taskList" class="task-list">
+                        <div class="empty">Adicione uma tarefa para começar *</div>
+                    </div>
+                </section>
+            </section>
+            <section class="card notes">
+                <div class="note-heade">
+                    <div class="note-label">Bloco de notas</div>
+                    <span class="saved" id="saved">
+
+                        Anotações salvas
+                    </span>
+                </div>
+                <div class="note-tools">
+                    <textarea name="note-content" id="note" class="note" placeholder="Escreva aqui..."></textarea>
+                </div>
+                <div class="note-foot">
+                    Não esqueça de salvar suas anotações
+                </div>
+            </section>
+        </main>
+        <section class="card kanban">
+            <div class="kanban-head">
+                <div>
+                    <div class="kanban-title">Quadro Kanban</div>
+                    <div class="kanban-sub">Visão geral dos seus afazeres.</div>
+                </div>
+                <button id="newBoardTask" class="add-column-task">+ Nova tarefa</button>
+            </div>
+            <div class="board">
+                <div class="column" data-colum="todo">
+                    <div class="colum-head">
+                        <div class="column-name">
+                            <i class="dot"></i>
+                            A fazer
+                        </div>
+                        <span class="column-count">1</span>
+                    </div>
+                    <div class="kanban-list">
+                        <div class="kanban-item" draggable="true" data-index="0" data-column="todo">
+                            <span>Planejar semana</span>
+                            <button aria-label="excluir cartão">x</button>
+                        </div>
+                    </div>
+                    <button class="add-inline">+ Adicionar cartão</button>
+                </div>
+                <div class="column" data-colum="doing">
+                    <div class="colum-head">
+                        <div class="column-name">
+                            <i class="dot"></i>
+                            Fazendo
+                        </div>
+                        <span class="column-count">1</span>
+                    </div>
+                    <div class="kanban-list">
+                        <div class="kanban-item" draggable="true" data-index="0" data-column="doing">
+                            <span>Planejar semana</span>
+                            <button aria-label="excluir cartão">x</button>
+                        </div>
+                    </div>
+                    <button class="add-inline">+ Adicionar cartão</button>
+                </div>
+                <div class="column" data-colum="done">
+                    <div class="colum-head">
+                        <div class="column-name">
+                            <i class="dot"></i>
+                            Feito
+                        </div>
+                        <span class="column-count">1</span>
+                    </div>
+                    <div class="kanban-list">
+                        <div class="kanban-item" draggable="true" data-index="0" data-column="done">
+                            <span>Planejar semana</span>
+                            <button aria-label="excluir cartão">x</button>
+                        </div>
+                    </div>
+                    <button class="add-inline">+ Adicionar cartão</button>
+                </div>
+
+            </div>
+            <div class="footer">
+                &copy;Fide et ratio
+            </div>
+    </div>
+    <script src="mainScript.js"></script>
+</body>
+
+</html>
