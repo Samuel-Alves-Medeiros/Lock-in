@@ -2,6 +2,9 @@ const startPomodoro = document.getElementById("start");
 startPomodoro.addEventListener("click", startPomo);
 const resetPomodoro = document.getElementById("reset");
 resetPomodoro.addEventListener("click", resetPomo);
+const progressBar = document.getElementById("progress");
+
+
 
 (function(){
 
@@ -26,21 +29,44 @@ resetPomodoro.addEventListener("click", resetPomo);
 
 
 
+
 let timeLeft = 1500;
+const totalTime = 1500;
 let isRunning = false;
-let interval = null
+let interval = null;
+
 
 function updatePomo(){
-    const timer = document.getElementById("timer")
-    let timeMinutes = Math.floor(timeLeft / 60)
-    let timeSeconds = Math.floor(timeLeft % 60)
-    let formatedMinutes = String(timeMinutes).padStart(2 , "0")
-    let formatedSeconds = String(timeSeconds).padStart(2, "0")
+    const timer = document.getElementById("timer");
+    let timeMinutes = Math.floor(timeLeft / 60);
+    let timeSeconds = Math.floor(timeLeft % 60);
+    let formatedMinutes = String(timeMinutes).padStart(2 , "0");
+    let formatedSeconds = String(timeSeconds).padStart(2, "0");
 
     timer.innerText = `${formatedMinutes}:${formatedSeconds}`;
-
     
 }
+const numSession = document.getElementById("sessions");
+
+function updateSession() {
+    numSession.textContent = `${parseInt(numSession.textContent) + 1}` 
+}
+
+function updateProgress() {
+    const elapsadeSeconds = totalTime - timeLeft;
+    const percentage = (elapsadeSeconds / totalTime) * 100;
+
+    progressBar.style.width = `${percentage}%`
+}
+
+function resetPomo(){
+    clearInterval(interval)
+    timeLeft = 1500
+    updatePomo()
+    interval = null
+    updateProgress()
+}
+
 function startPomo() {
     if (interval){
         return;
@@ -49,8 +75,10 @@ function startPomo() {
         interval = setInterval(()=>{
             timeLeft--
             updatePomo()
+            updateProgress()
             if (timeLeft == 0){
                 resetPomo()
+                updateSession()
             }
         }, 1000)
     }else{
@@ -58,9 +86,3 @@ function startPomo() {
     }
 }
 
-function resetPomo(){
-    clearInterval(interval)
-    timeLeft = 1500
-    updatePomo()
-    interval = null
-}
