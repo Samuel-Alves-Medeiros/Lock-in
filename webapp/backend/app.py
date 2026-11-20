@@ -1,10 +1,25 @@
-from flask import Flask, request,Response, jsonify
+import os
+from dotenv import load_dotenv
+from flask import Flask, request,jsonify, session
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
+load_dotenv()
 app = Flask(__name__)
-CORS(app)
+CORS(
+    app,
+    origins=["http://127.0.0.1:5500"],
+    supports_credentials=True
+)
+
+secret_key = os.getenv("FLASK_SECRET_KEY")
+
+if not secret_key:
+    raise RuntimeError("FLASK_SECRET_KEY não foi definida")
+
+app.config["SECRET_KEY"] = secret_key
+
 
 # Cria a tabela 'users' no banco de dados
 def init_db():
@@ -39,7 +54,7 @@ def signup_user():
             cursor = conn.cursor()
             cursor.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?)",
                            (email, name, hashed_password))
-            conn.commit() 
+            conn.commit()
 
         return jsonify({"message":"Usuário cadastrado com sucesso!!"}), 201  
     
@@ -67,33 +82,52 @@ def check_user():
         return jsonify({"erro": "Email and password field must be fufilled"}), 400
 
 
+    conn = connect_database()
+
     try:
-        with sqlite3.connect('database.db') as conn:
 
-            conn = connect_database()
-            user = conn.execute("SELECT id, name, password FROM users WHERE email = ? ", (email,)
-            ).fetchone()
+        user = conn.execute("SELECT id, name, password FROM users WHERE email = ? ", (email,)
+        ).fetchone()
 
-            if user is None:
-                return jsonify({"erro": "Email or passwor are incorrects"}), 401
+        if user is None:
+            return jsonify({"erro": "Email or passwor are incorrects"}), 401
             
-            saved_hash = user['password']
+        saved_hash = user['password']
 
-            if not check_password_hash(saved_hash, password):
-                return jsonify({"erro": "Email or password are incorrects"}), 401
+        if not check_password_hash(saved_hash, password):
+            return jsonify({"erro": "Email or password are incorrects"}), 401
+
+        session.clear()
+        session["user_id"] = user["id"]
             
-            return jsonify({
-                "message" : "Login aproved",
-                "id" : user['id'],
-                "name" : user['name'],
-                "email" : email
+        return jsonify({
+            "message" : "Login aproved",
+            "id" : user['id'],
+            "name" : user['name'],
+            "email" : email
 
-            }), 200
+        }), 200
         
     except Exception as e:
         print(repr(e))
         return jsonify({"erro": "Erro interno no servidor"}), 500
     
+    finally:
+        conn.close()
+
+
+@app.route("/api/me", methods=["GET"])
+def get_current_user():
+    user_id = session.get("user_id")
+    if user_id == None:
+        return jsonify({"erro": "usuário não autenticado"}), 401
+    
+    return jsonify({
+       "authenticated" : True,
+        "user_id": user_id
+    }), 200
+
+
 
 if __name__ == "__main__":
     init_db()

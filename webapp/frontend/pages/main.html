@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock in space</title>
-    <link rel="stylesheet" href="mainPageStyle.css">
+    <link rel="stylesheet" href="../css/mainPageStyle.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <div class="top-right">
                 <span class="day-label" id="day">dia-de-hoje.txt</span>
                 <div class="avatar">
-                    <img id="user-pfp" class="user-pfp" src="images/doom-pfp.png" alt="user-pfp">
+                    <img id="user-pfp" class="user-pfp" src="../images/doom-pfp.png" alt="user-pfp">
                 </div>
             </div>
         </header>
@@ -27,15 +27,15 @@
                 Lock in to mogg the betas
             </p>
         </section>
-        <main class="dashboard">
+        <main class="dashboard" hidden>
             <section class="left-stack">
                 <section class="card pomodoro">
                     <div class="card-heading">
                         <span class="eyebrow">Hora de focar</span>
                         <div class="mode-tabs">
-                            <button class="active" data-mode="focus">Foco</button>
-                            <button data-mode="short">Pausa</button>
-                            <button data-mode="long">Longa</button>
+                            <button id="focus" class="active" data-mode="focus">Foco</button>
+                            <button id="short" data-mode="short">Pausa</button>
+                            <button id="long" data-mode="long">Longa</button>
                         </div>
                     </div>
                     <div class="timer-area">
@@ -149,7 +149,9 @@
                 &copy;Fide et ratio
             </div>
     </div>
-    <script src="mainScript.js"></script>
+    <script src="../src/verifySession.js"></script>
+    <script src="../src/updateDate.js"></script>
+    <script src="../src/pomoScript.js"></script>
 </body>
 
 </html>

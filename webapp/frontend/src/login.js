@@ -17,6 +17,7 @@ function readData () {
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: "include",
         body: JSON.stringify({email: emailInput, password: passwordInput})
     })
     .then(async response => {
