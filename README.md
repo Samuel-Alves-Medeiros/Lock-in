@@ -10,6 +10,13 @@ Lock in space is a personal project designed for daily organization and task man
 
 [![My Skills](https://skillicons.dev/icons?i=html,css,js,py,flask,sqlite&theme=dark)](https://skillicons.dev)
 
+
+## Português
+Lock in space é um projeto pessoal feito para a organização do dia a dia e o gerenciamento de projetos pessoais. A ideia é combinar as principais ferramentas de estudos e organização pessoal em uma aplicação única, simples e intuitiva.
+
+status: 🚧 Em construção 🚧 </br>
+![](https://geps.dev/progress/40) 
+
 ## Funcionalidades
 
 - [x] Cadastro e autenticação de usuários.
@@ -19,13 +26,6 @@ Lock in space is a personal project designed for daily organization and task man
 - [ ] Anotações pessoais.
 - [ ] Checklists.
 - [ ] Estatísticas de produtividade.
-
-## Português
-Lock in space é um projeto pessoal feito para a organização do dia a dia e o gerenciamento de projetos pessoais. A ideia é combinar as principais ferramentas de estudos e organização pessoal em uma aplicação única, simples e intuitiva.
-
-status: 🚧 Em construção 🚧 </br>
-![](https://geps.dev/progress/40) 
-
 
 ### Preview
 
