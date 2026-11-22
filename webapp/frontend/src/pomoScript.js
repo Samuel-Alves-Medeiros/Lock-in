@@ -4,9 +4,9 @@ const resetPomodoro = document.getElementById("reset");
 resetPomodoro.addEventListener("click", resetPomo);
 const progressBar = document.getElementById("progress");
 
-let completedSessions = 0;
-let sessionsCounting = 0;
 
+let currentMode = "focus";
+let focusSession = 0;
 
 let timeLeft = 1500;
 let totalTime = 1500;
@@ -28,46 +28,75 @@ const short = document.getElementById("short");
 const long = document.getElementById("long");
 
 function setMode(mode, duration){
-
+    
     focusMode.classList.remove("active");
     short.classList.remove("active");
     long.classList.remove("active");
     mode.classList.add("active")
+
+
+    currentMode = mode.id;
+
     totalTime = duration;
     timeLeft = duration;
+
     updateProgress();
     updatePomo();
 }
 
-function swapTimer() {
-    
-    if (sessionsCounting == 3 ) {
-        setMode(long, 900);
-        sessionsCounting = 0;
 
-        
-    } else{
+async function sendSessions(duration){
+    try{
 
-        if (sessionsCounting % 2 == 0 ){
-                setMode(focusMode, 1500 );
-        
-        } else if (sessionsCounting % 2 == 1) {
-            
-            setMode(short, 300);
-                  
+        const response = await fetch("http://127.0.0.1:5000/sessions",  {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+
+            body: JSON.stringify({
+                mode: "focus",
+                duration: duration
+            })
+        })
+
+        const data = await response.json()
+
+        if (!response.ok)   {
+            throw new Error(data.erro)
         }
-    }
 
+        console.log(data.message)
+    } catch (error) {
+        console.error("Erro ao registrar sessão", error);
+        
+    }
 
 }
 
 const numSession = document.getElementById("sessions");
 
 function updateSession() {
-    numSession.textContent = `${parseInt(numSession.textContent) + 1}` 
-    sessionsCounting++;
-    completedSessions++;
-    swapTimer();
+
+    if (currentMode == "focus"){
+        numSession.textContent = `${parseInt(numSession.textContent) + 1}` 
+
+        focusSession++;
+        sendSessions(totalTime);
+    
+    
+        if (focusSession %4 == 0) {
+            setMode(long, 900)
+        }else{
+            setMode(short, 300)
+    }
+
+    }else{
+        setMode(focusMode, 1500);
+    }
+
+
 }
 
 function updateProgress() {
@@ -79,10 +108,10 @@ function updateProgress() {
 
 function resetPomo(){
     clearInterval(interval)
-    timeLeft = 1500;
-    totalTime = 1500;
-    updatePomo();
     interval = null;
+    timeLeft = totalTime;
+
+    updatePomo();
     updateProgress();
 }
 
@@ -96,7 +125,8 @@ function startPomo() {
             updatePomo();
             updateProgress();
             if (timeLeft == 0){
-                resetPomo();
+                clearInterval(interval);
+                interval = null;
                 updateSession();
             }
         }, 1000)
@@ -104,13 +134,3 @@ function startPomo() {
         resetPomo();
     }
 }
-
-// Enviar sessões
-
-// fetch("http://127.0.0.1:5000/sessions",  {
-//     method: "POST",
-//     headers:{
-//         "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({sessions: completedSessions})
-// })

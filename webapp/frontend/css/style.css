@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #f5f4ef;
+    --paper: #fffefa;
+    --ink: #30352f;
+    --muted: #8b9087;
+    --line: #e9e8df;
+    --sage: #dce8dc;
+    --sage-dark: #6f8b73;
+    --sage-deep: #4e6a53;
+    --peach: #f4e2d5;
+    --blue: #e1e9f0;
+    --yellow: #f3edcf;
+    --shadow: 0 12px 35px rgba(48, 53, 47, .055);
+    --radius: 18px;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -10,15 +28,16 @@
 }
 
 body{
-    background-color: rgb(130, 183, 226);
+    background-color: var(--ink);
      /* background-color: rgb(117, 179, 238); */
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
 }
 
 main{
     display: flex;
     width: 100vw;
     height: 100vh;
-    font-family: 'JetBrains', monospace;
     justify-content: center;
     align-items: center;
 }
@@ -42,12 +61,12 @@ main{
     flex-flow: column;
     justify-content:flex-start;
     align-items: flex-start;
-    background-color: antiquewhite;
+    background-color: var(--sage);
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     
     padding: 3rem 2.5rem;
-    gap: 0.5rem;
+    gap: 0rem;
     
     
 }
@@ -59,7 +78,7 @@ main{
 
 .container p{
     font-size: clamp(0.9rem, 1vw, 1.1rem);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     
 }
 
@@ -93,13 +112,13 @@ main{
     height: 2.5rem;
     width: 90%;
     border-radius: 0.3rem;
-    border: 0.15rem solid rgb(77 194 240);
+    border: 0.15rem solid var(--sage-dark);
     padding-left: 0.8rem;
     outline: none;
 }
 
 .input:focus{
-    border-color: rgb(30 140 200);
+    border-color: var(--sage-dark);
     box-shadow: 0 0 5px rgba(77 194 240 0.5);
 }
 
@@ -108,9 +127,9 @@ main{
     width: 90%;
     font-size: clamp(1rem, 2.3vw, 1.2rem);
     font-weight: bold;
-    background-color: rgb(77 194 240);
+    background-color: var(--sage-dark);
     border-radius: 1rem;
-    border-color: rgb(30 140 200);
+    border-color: var(--sage-deep);
     cursor: pointer;    
 }
 
