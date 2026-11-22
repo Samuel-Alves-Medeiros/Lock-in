@@ -9,7 +9,7 @@ Lock-in is a personal project designed for daily organization and task managemen
 ## Português
 Lock in space é um projeto pessoal feito para a organização do dia a dia e o gerenciamento de projetos pessoais. A ideia é combinar as principais ferramentas de estudos e organização pessoal em uma aplicação única, simples e intuitiva.
 
-status: 🚧 Em construção 🚧
+status: 🚧 Em construção 🚧 </br>
 ![](https://geps.dev/progress/40) 
 
 
