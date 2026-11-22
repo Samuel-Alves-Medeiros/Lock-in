@@ -31,7 +31,7 @@ status: 🚧 Em construção 🚧 </br>
 
 ![página completa](<webapp/frontend/images/Lockin space photos/pagina-inteira.png>)
 --
-**Logos e imagens de template provisórias geradas com IA.** ***(Posteriormente a logo e as imagens de template serão substituídas por um design feito por pessoas reais (eu) ***
+**Logo e imagens de template provisórias geradas com IA.** ***(Posteriormente a logo e as imagens de template serão substituídas por um design feito por pessoas reais (eu) ***
 ![página de cadastro](<webapp/frontend/images/Lockin space photos/Criação-de-conta.png>)
 ![página de login](<webapp/frontend/images/Lockin space photos/Login.png>)
 ![pomodoro](<webapp/frontend/images/Lockin space photos/pomodoro.png>)
