@@ -8,8 +8,8 @@ const progressBar = document.getElementById("progress");
 let currentMode = "focus";
 let focusSession = 0;
 
-let timeLeft = 1500;
-let totalTime = 1500;
+let timeLeft = 5;
+let totalTime = 5;
 let interval = null;
 
 
